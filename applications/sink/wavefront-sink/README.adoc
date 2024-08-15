@@ -1,0 +1,17 @@
+//tag::ref-doc[]
+= Wavefront Sink
+
+The *Wavefront* sink consumes Messages<?>, coverts it into a metric in
+https://docs.wavefront.com/wavefront_data_format.html[Wavefront data format] and sends the metric directly to Wavefront or a Wavefront proxy.
+
+Supports common ETL use-cases, where existing (historical) metrics data has to be cleaned, transformed and stored in Wavefront for further analysis.
+
+== Options
+
+The *Wavefront* $$sink$$ has the following options:
+
+//tag::configuration-properties[link-to-catalog=true]
+https://github.com/spring-cloud/spring-functions-catalog/tree/main/consumer/spring-wavefront-consumer#configuration-options[See Spring Functions Catalog for configuration options].
+//end::configuration-properties[]
+
+//end::ref-doc[]

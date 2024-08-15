@@ -1,0 +1,22 @@
+//tag::ref-doc[]
+= JDBC Source
+
+This source polls data from an RDBMS.
+This source is fully based on the `DataSourceAutoConfiguration`, so refer to the https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-sql.html[Spring Boot JDBC Support] for more information.
+
+== Payload
+
+* `Map<String, Object>` when `jdbc.split == true` (default) and `List<Map<String, Object>>` otherwise
+
+== Options
+
+The **$$jdbc$$** $$source$$ has the following options:
+
+//tag::configuration-properties[link-to-catalog=true]
+https://github.com/spring-cloud/spring-functions-catalog/tree/main/supplier/spring-jdbc-supplier#configuration-options[See Spring Functions Catalog for configuration options].
+//end::configuration-properties[]
+
+Also see the https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html[Spring Boot Documentation]
+for addition `DataSource` properties and `TriggerProperties` and `MaxMessagesProperties` for polling options.
+
+//end::ref-doc[]

@@ -1,0 +1,17 @@
+//tag::ref-doc[]
+= Twitter Message Source
+
+Repeatedly retrieves the direct messages (both sent and received) within the last 30 days, sorted in reverse-chronological order.
+The relieved messages are cached (in a `MetadataStore` cache) to prevent duplications.
+By default an in-memory `SimpleMetadataStore` is used.
+
+The `twitter.message.source.count` controls the number or returned messages.
+
+The `spring.cloud.stream.poller` properties control the message poll interval.
+Must be aligned with used APIs rate limit
+
+== Options
+
+https://github.com/spring-cloud/spring-functions-catalog/tree/main/supplier/spring-twitter-supplier#3-twitter-direct-message-supplier[See function catalog for configuration options]
+
+//end::ref-doc[]

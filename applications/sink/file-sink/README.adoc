@@ -1,0 +1,21 @@
+//tag::ref-doc[]
+= File Sink
+
+The file sink app writes each message it receives to a file.
+
+== Payload
+
+* `java.io.File`
+* `java.io.InputStream`
+* `byte[]`
+* `String`
+
+== Options
+
+The `file-sink` has the following options:
+
+//tag::configuration-properties[link-to-catalog=true]
+https://github.com/spring-cloud/spring-functions-catalog/tree/main/consumer/spring-file-consumer#configuration-options[See Spring Functions Catalog for configuration options].
+//end::configuration-properties[]
+
+//end::ref-doc[]

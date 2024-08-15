@@ -1,0 +1,30 @@
+//tag::ref-doc[]
+= Twitter Trend and Trend Locations Processor
+
+Processor that can return either trending topic or the Locations of the trending topics.
+The `twitter.trend.trend-query-type` property allow to select the query type.
+
+== Retrieve trending topic in a location (optionally)
+
+For this mode set `twitter.trend.trend-query-type` to `trend`.
+
+Processor based on https://developer.twitter.com/en/docs/trends/trends-for-location/api-reference/get-trends-place[Trends API].
+Returns the https://help.twitter.com/en/using-twitter/twitter-trending-faqs[trending topics] near a specific latitude, longitude location.
+
+== Retrieve trend Locations
+
+For this mode set `twitter.trend.trend-query-type` to `trendLocation`.
+
+Retrieve a full or nearby locations list of trending topics by location.
+
+If the `latitude`, `longitude` parameters are NOT provided the processor performs the https://developer.twitter.com/en/docs/trends/locations-with-trending-topics/api-reference/get-trends-available[Trends Available API] and returns the locations that Twitter has trending topic information for.
+
+If the `latitude`, `longitude` parameters are provided the processor performs the https://developer.twitter.com/en/docs/trends/locations-with-trending-topics/api-reference/get-trends-closest[Trends Closest API] and returns the locations that Twitter has trending topic information for, closest to a specified location.
+
+Response is an array of `locations` that encode the location's WOEID and some other human-readable information such as a canonical name and country the location belongs in.
+
+== Options
+
+https://github.com/spring-cloud/spring-functions-catalog/tree/main/function/spring-twitter-function#12-configuration-options[See function catalog for configuration options]
+
+//end::ref-doc[]

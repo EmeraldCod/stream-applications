@@ -1,0 +1,14 @@
+//tag::ref-doc[]
+= Mail Source
+
+A source application that listens for Emails and emits the message body as a message payload.
+
+== Options
+
+The **$$mail$$** $$source$$ has the following options:
+
+//tag::configuration-properties[link-to-catalog=true]
+https://github.com/spring-cloud/spring-functions-catalog/tree/main/supplier/spring-mail-supplier#configuration-options[See Spring Functions Catalog for configuration options].
+//end::configuration-properties[]
+
+//end::ref-doc[]

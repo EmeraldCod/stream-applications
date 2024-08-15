@@ -1,0 +1,27 @@
+//tag::ref-doc[]
+= Twitter Stream Source
+
+Real-time Tweet streaming https://developer.twitter.com/en/docs/tweets/filter-realtime/api-reference/post-statuses-filter.html[Filter] and https://developer.twitter.com/en/docs/tweets/sample-realtime/overview/GET_statuse_sample[Sample] APIs support.
+
+* The `Filter API` returns public statuses that match one or more filter predicates.
+Multiple parameters allows using a single connection to the Streaming API.
+TIP: The `track`, `follow`, and `locations` fields are combined with an *OR* operator!
+Queries with `track=foo` and `follow=1234` returns Tweets matching `test` *OR* created by user `1234`.
+
+* The `Sample API` returns a small random sample of all public statuses.
+The Tweets returned by the default access level are the same, so if two different clients connect to this endpoint, they will see the same Tweets.
+
+The default access level allows up to 400 track keywords, 5,000 follow user Ids and 25 0.1-360 degree location boxes.
+
+== Options
+
+https://github.com/spring-cloud/spring-functions-catalog/tree/main/supplier/spring-twitter-supplier#22-configuration-options[See function catalog for configuration options]
+
+//end::ref-doc[]
+
+
+== Examples
+
+```
+java -jar twitter-stream-source.jar --twitter.connection.accessTokenSecret=xxx --twitter.connection.accessToken=xxx --twitter.connection.consumerKey=xxx --twitter.connection.consumerSecret=xxx
+```

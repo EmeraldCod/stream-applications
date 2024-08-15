@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>aggregator-processor</artifactId>
+    <name>aggregator-processor</name>
+    <description>aggregator processor apps</description>
+
+    <parent>
+        <groupId>org.springframework.cloud.stream.app</groupId>
+        <artifactId>stream-applications-core</artifactId>
+        <version>5.0.1-SNAPSHOT</version>
+        <relativePath>../../stream-applications-core/pom.xml</relativePath>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud.fn</groupId>
+            <artifactId>spring-aggregator-function</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dataflow-apps-docs-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dataflow-apps-generator-plugin</artifactId>
+                <configuration>
+                    <application>
+                        <name>aggregator</name>
+                        <type>processor</type>
+                        <version>${project.version}</version>
+                        <configClass>AUTOCONFIGURATION</configClass>
+                        <functionDefinition>jsonBytesToMap|aggregatorFunction</functionDefinition>
+                        <maven>
+                            <dependencies>
+                                <dependency>
+                                    <groupId>org.springframework.cloud.fn</groupId>
+                                    <artifactId>spring-aggregator-function</artifactId>
+                                </dependency>
+                            </dependencies>
+                        </maven>
+                    </application>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

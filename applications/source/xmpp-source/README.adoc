@@ -1,0 +1,45 @@
+//tag::ref-doc[]
+= XMPP Source
+
+The "xmpp" source enables receiving messages from an XMPP Server.
+
+== Input
+
+N/A
+
+== Output
+
+=== Payload
+
+* `byte[]`
+
+== Options
+
+The **$$xmpp$$** $$source$$ has the following options:
+
+//tag::configuration-properties[link-to-catalog=true]
+https://github.com/spring-cloud/spring-functions-catalog/tree/main/supplier/spring-xmpp-supplier#configuration-options[See Spring Functions Catalog for configuration options].
+//end::configuration-properties[]
+
+Also see the https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html[Spring Boot Documentation]
+for addition properties for the broker connections and listener properties.
+
+== Build
+
+```
+$ ./mvnw clean install -PgenerateApps
+$ cd apps
+```
+You can find the corresponding binder based projects here.
+You can then cd into one of the folders and build it:
+```
+$ ./mvnw clean package
+```
+
+== Examples
+
+```
+java -jar xmpp-source.jar --xmpp.factory.host=localhost --xmpp.factory.port=5222 --xmpp.factory.user=jane --xmpp.factory.password=secret --xmpp.factory.service-name=localhost
+```
+
+//end::ref-doc[]

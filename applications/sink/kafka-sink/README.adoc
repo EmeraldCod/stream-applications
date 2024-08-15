@@ -1,0 +1,15 @@
+//tag::ref-doc[]
+= Apache Kafka Sink
+
+This module publishes messages to Apache Kafka.
+
+== Options
+
+The **$$kafka$$** $$sink$$ has the following options:
+
+https://github.com/spring-cloud/spring-functions-catalog/tree/main/consumer/spring-kafka-publisher#configuration-options[See function catalog for configuration options]
+
+(See the Spring Boot documentation for Spring for Apache Kafka configuration properties)
+
+
+//end::ref-doc[]

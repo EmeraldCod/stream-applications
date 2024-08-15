@@ -1,0 +1,19 @@
+//tag::ref-doc[]
+= MQTT Source
+
+Source that enables receiving messages from MQTT.
+
+== Payload:
+
+* `String` if binary setting is `false` (default)
+* `byte[]` if binary setting is `true`
+
+== Options
+
+The **$$mqtt$$** $$source$$ has the following options:
+
+//tag::configuration-properties[link-to-catalog=true]
+https://github.com/spring-cloud/spring-functions-catalog/tree/main/supplier/spring-mqtt-supplier#configuration-options[See Spring Functions Catalog for configuration options].
+//end::configuration-properties[]
+
+//end::ref-doc[]

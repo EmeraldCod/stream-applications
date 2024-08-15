@@ -1,0 +1,16 @@
+//tag::ref-doc[]
+= Apache Kafka Source
+
+This module consumes messages from Apache Kafka.
+
+== Options
+
+The **$$kafka$$** $$source$$ has the following options:
+
+(See the Spring Boot documentation for Spring for Apache Kafka configuration properties)
+
+//tag::configuration-properties[link-to-catalog=true]
+https://github.com/spring-cloud/spring-functions-catalog/tree/main/supplier/spring-kafka-supplier#configuration-options[See Spring Functions Catalog for configuration options].
+//end::configuration-properties[]
+
+//end::ref-doc[]

@@ -1,0 +1,19 @@
+//tag::ref-doc[]
+= MQTT Sink
+
+This module sends messages to MQTT.
+
+== Payload:
+
+* `byte[]`
+* `String`
+
+== Options
+
+The **$$mqtt$$** $$sink$$ has the following options:
+
+//tag::configuration-properties[link-to-catalog=true]
+https://github.com/spring-cloud/spring-functions-catalog/tree/main/consumer/spring-mqtt-consumer#configuration-options[See Spring Functions Catalog for configuration options].
+//end::configuration-properties[]
+
+//end::ref-doc[]

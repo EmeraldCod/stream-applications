@@ -1,0 +1,20 @@
+//tag::ref-doc[]
+= Cassandra Sink
+
+This sink application writes the content of each message it receives into Cassandra.
+
+It expects a payload of JSON String and uses it’s properties to map to table columns.
+
+== Payload
+A JSON String or byte array representing the entity (or a list of entities) to be persisted.
+
+== Options
+
+The **$$cassandra$$** $$sink$$ has the following options:
+
+
+//tag::configuration-properties[link-to-catalog=true]
+https://github.com/spring-cloud/spring-functions-catalog/tree/main/consumer/spring-cassandra-consumer#configuration-options[See Spring Functions Catalog for configuration options].
+//end::configuration-properties[]
+
+//end::ref-doc[]

@@ -1,0 +1,22 @@
+//tag::ref-doc[]
+= Websocket Source
+The `Websocket` source that produces messages through web socket.
+
+== Options
+
+//tag::configuration-properties[link-to-catalog=true]
+https://github.com/spring-cloud/spring-functions-catalog/tree/main/supplier/spring-websocket-supplier#configuration-options[See Spring Functions Catalog for configuration options].
+//end::configuration-properties[]
+
+== Examples
+To verify that the websocket-source receives messages from Websocket clients, you can use the following simple end-to-end setup.
+
+=== Step 1: Start kafka
+
+=== Step 2: Deploy `websocket-source` on a specific port, say 8080
+
+=== Step 3: Connect a websocket client on port 8080 path "/websocket", and send some messages.
+
+You can  start a kafka console consumer and see the messages there.
+
+//end::ref-doc[]

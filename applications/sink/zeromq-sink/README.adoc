@@ -1,0 +1,42 @@
+//tag::ref-doc[]
+= ZeroMQ Sink
+
+The "zeromq" sink enables sending messages to a ZeroMQ socket.
+
+== Input
+
+* `byte[]`
+
+== Output
+
+=== Payload
+
+N/A
+
+== Options
+
+The **$$zeromq$$** $$sink$$ has the following options:
+
+//tag::configuration-properties[link-to-catalog=true]
+https://github.com/spring-cloud/spring-functions-catalog/tree/main/consumer/spring-zeromq-consumer#configuration-options[See Spring Functions Catalog for configuration options].
+//end::configuration-properties[]
+
+== Build
+
+```
+$ ./mvnw clean install -PgenerateApps
+$ cd apps
+```
+You can find the corresponding binder based projects here.
+You can then cd into one of the folders and build it:
+```
+$ ./mvnw clean package
+```
+
+== Examples
+
+```
+java -jar zeromq-sink.jar --zeromq.consumer.connectUrl=tcp://server:port --zeromq.consumer.topic=
+```
+
+//end::ref-doc[]

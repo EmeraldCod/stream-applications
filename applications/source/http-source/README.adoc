@@ -1,0 +1,26 @@
+//tag::ref-doc[]
+= Http Source
+
+A source application that listens for HTTP requests and emits the body as a message payload.
+If the Content-Type matches `text/*` or `application/json`, the payload will be a String,
+otherwise the payload will be a byte array.
+
+== Payload:
+
+If content type matches `text/*` or `application/json`
+
+* `String`
+
+If content type does not match `text/*` or `application/json`
+
+* `byte array`
+
+== Options
+
+The **$$http$$** $$source$$ supports the following configuration properties:
+
+//tag::configuration-properties[link-to-catalog=true]
+https://github.com/spring-cloud/spring-functions-catalog/tree/main/supplier/spring-http-supplier#configuration-options[See Spring Functions Catalog for configuration options].
+//end::configuration-properties[]
+
+//end::ref-doc[]

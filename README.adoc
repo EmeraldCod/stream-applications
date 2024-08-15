@@ -1,0 +1,181 @@
+== Stream Applications
+
+In this repository, you will find a collection of components that can meet various data integration use cases and requirements.
+
+This repository builds on top of the https://github.com/spring-cloud/spring-functions-catalog[Spring Functions Catalog] and generates standalone Spring Cloud Stream applications that can run against Spring Cloud Stream's RabbitMQ or Apache Kafka binder implementations.
+It is also possible to extend the generator to bundle the Java functions with the other supported binder implementations.
+
+These applications can run standalone or as part of a data flow, such as the one orchestrated using Spring Cloud Data Flow.
+
+=== Project Structure
+
+The following are the various components of this repository.
+
+* https://github.com/spring-cloud/stream-applications/tree/master/applications/stream-applications-core[Common Core Components for Applications]
+* https://github.com/spring-cloud/stream-applications/tree/master/applications[Spring Cloud Stream Applications]
+* https://github.com/spring-cloud/stream-applications/tree/master/stream-applications-build[Build Parent]
+* https://github.com/spring-cloud/stream-applications/tree/master/stream-applications-release-train[Release Train]
+
+=== Reusable Spring Cloud Stream Applications
+
+The following table shows the currently available stream applications:
+
+|===
+| `Source` | `Processor` | `Sink`
+
+|link:applications/source/debezium-source/README.adoc[Debezium]
+|link:applications/processor/aggregator-processor/README.adoc[Aggregator]
+|link:applications/sink/analytics-sink/README.adoc[Analytics]
+
+|link:applications/source/file-source/README.adoc[File]
+|link:applications/processor/bridge-processor/README.adoc[Bridge]
+|link:applications/sink/cassandra-sink/README.adoc[Cassandra]
+
+|link:applications/source/ftp-source/README.adoc[FTP]
+|link:applications/processor/filter-processor/README.adoc[Filter]
+|link:applications/sink/elasticsearch-sink/README.adoc[Elasticsearch]
+
+|link:applications/source/http-source/README.adoc[HTTP]
+|link:applications/processor/groovy-processor/README.adoc[Groovy]
+|link:applications/sink/file-sink/README.adoc[File]
+
+|link:applications/source/jdbc-source/README.adoc[JDBC]
+|link:applications/processor/header-enricher-processor/README.adoc[Header Enricher]
+|link:applications/sink/ftp-sink/README.adoc[FTP]
+
+|link:applications/source/jms-source/README.adoc[JMS]
+|link:applications/processor/header-filter-processor/README.adoc[Header Filter]
+|link:applications/sink/jdbc-sink/README.adoc[JDBC]
+
+|link:applications/source/kafka-source/README.adoc[Kafka]
+|link:applications/processor/http-request-processor/README.adoc[HTTP Request]
+|link:applications/sink/kafka-sink/README.adoc[Kafka]
+
+|link:applications/source/load-generator-source/README.adoc[Load Generator]
+|link:applications/processor/script-processor/README.adoc[Script]
+|link:applications/sink/log-sink/README.adoc[Log]
+
+|link:applications/source/mail-source/README.adoc[Mail]
+|link:applications/processor/splitter-processor/README.adoc[Splitter]
+|link:applications/sink/mongodb-sink/README.adoc[MongoDB]
+
+|link:applications/source/mongodb-source/README.adoc[MongoDB]
+|link:applications/processor/transform-processor/README.adoc[Transform]
+|link:applications/sink/mqtt-sink/README.adoc[MQTT]
+
+|link:applications/source/mqtt-source/README.adoc[MQTT]
+|link:applications/processor/twitter-trend-processor/README.adoc[Twitter Trend]
+|link:applications/sink/pgcopy-sink/README.adoc[Pgcopy]
+
+|link:applications/source/rabbit-source/README.adoc[RabbitMQ]
+|
+|link:applications/sink/rabbit-sink/README.adoc[RabbitMQ]
+
+|link:applications/source/s3-source/README.adoc[AWS S3]
+|
+|link:applications/sink/redis-sink/README.adoc[Redis]
+
+|link:applications/source/sftp-source/README.adoc[SFTP]
+|
+|link:applications/sink/router-sink/README.adoc[Router]
+
+|link:applications/source/syslog-source/README.adoc[Syslog]
+|
+|link:applications/sink/rsocket-sink/README.adoc[RSocket]
+
+|link:applications/source/tcp-source/README.adoc[TCP]
+|
+|link:applications/sink/s3-sink/README.adoc[AWS S3]
+
+|link:applications/source/time-source/README.adoc[Time]
+|
+|link:applications/sink/sftp-sink/README.adoc[SFTP]
+
+|link:applications/source/twitter-message-source/README.adoc[Twitter Message]
+|
+|link:applications/sink/tcp-sink/README.adoc[TCP]
+
+|link:applications/source/twitter-search-source/README.adoc[Twitter Search]
+|
+|link:applications/sink/throughput-sink/README.adoc[Throughput]
+
+|link:applications/source/twitter-stream-source/README.adoc[Twitter Stream]
+|
+|link:applications/sink/twitter-message-sink/README.adoc[Twitter Message]
+
+|link:applications/source/websocket-source/README.adoc[Websocket]
+|
+|link:applications/sink/twitter-update-sink/README.adoc[Twitter Update]
+
+|link:applications/source/xmpp-source/README.adoc[XMPP]
+|
+|link:applications/sink/wavefront-sink/README.adoc[Wavefront]
+
+|link:applications/source/zeromq-source/README.adoc[ZeroMQ]
+|
+|link:applications/sink/websocket-sink/README.adoc[Webscoket]
+
+|
+|
+|link:applications/sink/xmpp-sink/README.adoc[XMPP]
+
+|
+|
+|link:applications/sink/zeromq-sink/README.adoc[ZeroMQ]
+
+|===
+
+=== Build
+
+This build requires GraalVM JDK 17 distribution in order to build the script function and processor.
+
+If you are building locally and don't want to publish to a repository set: `export LOCAL=true`
+
+==== Quick Compile
+
+This will compile all jars and publish to local repo.
+
+[source,shell]
+....
+./quick-compile.sh
+....
+
+==== Boil the Ocean
+
+This will build and test / integration test all the modules.
+
+....
+./full-build-test.sh
+....
+
+==== Core
+
+This will build the core functionality and all functions.
+
+[source,shell]
+....
+./build-core.sh
+....
+
+You can then build the desired apps.
+
+==== Application
+
+[source,shell]
+....
+./build-app.sh . applications/sink/log-sink
+....
+
+NOTE: In order to disable metrics by default there needs to be application properties configured like in `default-application.properties`.
+The `build-app.sh` script will copy default-application.properties into src/main/resources if no application.properties,yml,yaml or json is present.
+
+=== Additional Resources
+
+Here is a list of resources where you can find out more about using and developing functions and stream applications:
+
+* link:docs/FunctionComposition.adoc[Function Composition]
+* link:docs/Contributing.adoc[Contributing a New Function or Application to this Repository]
+
+=== Code of Conduct
+
+Please see our https://github.com/spring-projects/.github/blob/master/CODE_OF_CONDUCT.md[Code of Conduct]

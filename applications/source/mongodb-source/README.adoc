@@ -1,0 +1,22 @@
+//tag::ref-doc[]
+= MongoDB Source
+
+This source polls data from MongoDB.
+This source is fully based on the `MongoDataAutoConfiguration`, so refer to the
+https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-nosql.html#boot-features-mongodb[Spring Boot MongoDB Support]
+for more information.
+
+
+== Options
+
+The **$$mongodb$$** $$source$$ has the following options:
+
+
+//tag::configuration-properties[link-to-catalog=true]
+https://github.com/spring-cloud/spring-functions-catalog/tree/main/supplier/spring-mongodb-supplier#configuration-options[See Spring Functions Catalog for configuration options].
+//end::configuration-properties[]
+
+Also see the https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html[Spring Boot Documentation] for additional `MongoProperties` properties.
+See and `TriggerProperties` for polling options.
+
+//end::ref-doc[]

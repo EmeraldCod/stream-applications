@@ -1,0 +1,42 @@
+//tag::ref-doc[]
+= Twitter Search Source
+
+The Twitter's https://developer.twitter.com/en/docs/tweets/search/api-reference/get-search-tweets.html[Standard search API] (search/tweets) allows simple queries against the indices of recent or popular Tweets. This `Source` provides continuous searches against a sampling of recent Tweets published in the past 7 days. Part of the 'public' set of APIs.
+
+Returns a collection of relevant Tweets matching a specified query.
+
+Use the `spring.cloud.stream.poller` properties to control the interval between consecutive search requests. Rate Limit - 180 requests per 30 min. window (e.g. ~6 r/m, ~ 1 req / 10 sec.)
+
+The `twitter.search` query properties allows querying by keywords and filter the result by time and geolocation.
+
+The `twitter.search.count` and `twitter.search.page` control the result pagination in accordance with to the Search API.
+
+Note: Twitter's search service and, by extension, the Search API is not meant to be an exhaustive source of Tweets. Not all Tweets will be indexed or made available via the search interface.
+
+== Options
+
+https://github.com/spring-cloud/spring-functions-catalog/tree/main/supplier/spring-twitter-supplier#12-configuration-options[See function catalog for configuration options]
+
+//end::ref-doc[]
+
+
+== Examples
+
+```
+java -jar twitter-search-source.jar
+    --twitter.connection.consumerKey= ...
+    --twitter.connection.consumerSecret= ...
+    --twitter.connection.accessToken= ...
+    --twitter.connection.accessTokenSecret= ...
+
+    --twitter.search.query=Amsterdam
+    --twitter.search.count=30
+    --twitter.search.page=3
+```
+
+And here is an example pipeline that uses twitter-search:
+
+```
+twitter-search-stream= twitter-search  --twitter.connection.consumerKey= ... --twitter.connection.consumerSecret= ... --twitter.connection.accessToken= ... --twitter.connection.accessTokenSecret= ... --twitter.search.query=Amsterdam --twitter.search.count=30 --twitter.search.page=3
+
+```

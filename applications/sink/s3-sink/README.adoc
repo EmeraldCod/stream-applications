@@ -1,0 +1,50 @@
+//tag::ref-doc[]
+= Amazon S3 Sink
+
+This sink app supports transferring objects to the Amazon S3 bucket.
+Files payloads (and directories recursively) are transferred to the `remote` directory (S3 bucket) to the `local` directory where the application is deployed.
+
+Messages accepted by this sink must contain one of the `payload` as:
+
+- `File`, including directories for recursive upload;
+- `InputStream`;
+- `byte[]`
+
+== Options
+
+The **$$s3$$** $$sink$$ has the following options:
+
+//tag::configuration-properties[link-to-catalog=true]
+https://github.com/spring-cloud/spring-functions-catalog/tree/main/consumer/spring-s3-consumer#configuration-options[See Spring Functions Catalog for configuration options].
+//end::configuration-properties[]
+
+The target generated application based on the `AmazonS3SinkConfiguration` can be enhanced with the `S3MessageHandler.UploadMetadataProvider` and/or `S3ProgressListener`, which are injected into `S3MessageHandler` bean.
+See https://github.com/spring-projects/spring-integration-aws[Spring Integration AWS] support for more details.
+
+== Amazon AWS common options
+
+The Amazon S3 Sink (as all other Amazon AWS applications) is based on the
+https://github.com/spring-cloud/spring-cloud-aws[Spring Cloud AWS] project as a foundation, and its auto-configuration
+classes are used automatically by Spring Boot.
+Consult their documentation regarding required and useful auto-configuration properties.
+
+Some of them are about AWS credentials:
+
+- spring.cloud.aws.credentials.accessKey
+- spring.cloud.aws.credentials.secretKey
+- spring.cloud.aws.credentials.instanceProfile
+- spring.cloud.aws.credentials.profileName
+- spring.cloud.aws.credentials.profilePath
+
+Other are for AWS `Region` definition:
+
+- cloud.aws.region.auto
+- cloud.aws.region.static
+
+=== Examples
+
+```
+java -jar s3-sink.jar --s3.bucket=/tmp/bar
+```
+
+//end::ref-doc[]

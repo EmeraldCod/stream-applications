@@ -1,0 +1,31 @@
+name: 'CI - Manual'
+
+on:
+  workflow_dispatch:
+    inputs:
+      verbose:
+        default: 'false'
+        description: 'Verbose output'
+        required: false
+      branch:
+        description: 'Enter branch name'
+        required: true
+      maven_threads:
+        description: 'Maven Threads'
+        default: '1'
+        required: true
+
+jobs:
+  build:
+    uses: ./.github/workflows/common.yml
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+      TMC_API_TOKEN: ${{ secrets.TMC_API_TOKEN }}
+      GCP_CRED_JSON: ${{ secrets.GCP_CRED_JSON }}
+      ARTIFACTORY_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
+      ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
+    with:
+      branch: ${{ inputs.branch }}
+      verbose: ${{ inputs.verbose == 'true' }}
+      mavenThreads: ${{ inputs.maven_threads }}

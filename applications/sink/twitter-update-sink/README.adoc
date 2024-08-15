@@ -1,0 +1,32 @@
+//tag::ref-doc[]
+= Twitter Update Sink
+
+Updates the authenticating user's current text (e.g Tweeting).
+
+NOTE: For each update attempt, the update text is compared with the authenticating user's recent Tweets.
+Any attempt that would result in duplication will be blocked, resulting in a 403 error.
+A user cannot submit the same text twice in a row.
+
+While not rate limited by the API, a user is limited in the number of Tweets they can create at a time.
+The update limit for standard API is 300 in 3 hours windows.
+If the number of updates posted by the user reaches the current allowed limit this method will return an HTTP 403 error.
+
+You can find details for the Update API here: https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/post-statuses-update
+
+== Options
+
+https://github.com/spring-cloud/spring-functions-catalog/tree/main/consumer/spring-twitter-consumer#12-configuration-options[See function catalog for configuration options]
+
+//end::ref-doc[]
+
+== Configuration
+
+`TwitterUpdateConsumerConfiguration` exposes 2 composable functions:
+
+* `Function<Message<?>, StatusUpdate> messageToStatusUpdateFunction(TwitterUpdateConsumerProperties updateProperties)` - Converts input message into `StatusUpdate` query object.
+* `Consumer<StatusUpdate> updateStatus(Twitter twitter)` - Sends the input `StatusUpdate` argument as Twitter text update.
+
+Use `@Import(TwitterUpdateConsumerConfiguration.class)` to compose those functions.
+
+By default the `twitter-update` implements the following composite function chain:
+`spring.cloud.function.definition=byteArrayTextToString|messageToStatusUpdateFunction|updateStatus` or (`byteArrayTextToString|twitterStatusUpdateConsumer`)

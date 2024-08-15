@@ -1,0 +1,94 @@
+//tag::ref-doc[]
+= SFTP Source
+This source application supports transfer of files using the SFTP protocol.
+Files are transferred from the `remote` directory to the `local` directory where the app is deployed.
+Messages emitted by the source are provided as a byte array by default. However, this can be
+customized using the `--mode` option:
+
+- *ref* Provides a `java.io.File` reference
+- *lines* Will split files line-by-line and emit a new message for each line
+- *contents* The default. Provides the contents of a file as a byte array
+
+When using `--mode=lines`, you can also provide the additional option `--withMarkers=true`.
+If set to `true`, the underlying `FileSplitter` will emit additional _start-of-file_ and _end-of-file_ marker messages before and after the actual data.
+The payload of these 2 additional marker messages is of type `FileSplitter.FileMarker`. The option `withMarkers` defaults to `false` if not explicitly set.
+
+See link:../../../functions/supplier/sftp-supplier/README.adoc[`sftp-supplier`] for advanced configuration options.
+
+See also link:../../../functions/common/metadata-store-common/README.adoc[MetadataStore] options for possible shared persistent store configuration used to prevent duplicate messages on restart.
+
+
+== Input
+
+N/A (Fetches files from an SFTP server).
+
+== Output
+
+=== mode = contents
+
+==== Headers:
+
+* `Content-Type: application/octet-stream`
+* `file_name: <file name>`
+* `file_remoteFileInfo <file metadata>`
+* `file_remoteHostPort: <host:port>`
+* `file_remoteDirectory: <relative-path>`
+* `file_remoteFile: <file-name>`
+* `sftp_selectedServer: <server-key>` (if multi-source)
+
+==== Payload:
+
+A `byte[]` filled with the file contents.
+
+=== mode = lines
+
+==== Headers:
+
+* `Content-Type: text/plain`
+* `file_name: <file name>`
+* `correlationId: <UUID>` (same for each line)
+* `sequenceNumber: <n>`
+* `sequenceSize: 0` (number of lines is not know until the file is read)
+* `file_marker : <file marker>` (if with-markers is enabled)
+
+==== Payload:
+
+A `String` for each line.
+
+The first line is optionally preceded by a message with a `START` marker payload.
+The last line is optionally followed by a message with an `END` marker payload.
+
+Marker presence and format are determined by the `with-markers` and `markers-json` properties.
+
+=== mode = ref
+
+==== Headers:
+
+* `file_remoteHostPort: <host:port>`
+* `file_remoteDirectory: <relative-path>`
+* `file_remoteFile: <file-name>`
+* `file_originalFile: <absolute-path-of-local-file>`
+* `file_name <local-file-name>`
+* `file_relativePath`
+* `file_remoteFile: <remote-file-name>`
+* `sftp_selectedServer: <server-key>` (if multi-source)
+
+==== Payload:
+
+A `java.io.File` object.
+
+== Options
+
+The **$$ftp$$** $$source$$ has the following options:
+
+//tag::configuration-properties[link-to-catalog=true]
+https://github.com/spring-cloud/spring-functions-catalog/tree/main/supplier/spring-sftp-supplier#configuration-options[See Spring Functions Catalog for configuration options].
+//end::configuration-properties[]
+
+== Examples
+
+```
+java -jar sftp_source.jar --sftp.supplier.remote-dir=foo --file.mode=lines --sftp.supplier.factory.host=sftpserver \
+         --sftp.supplier.factory.username=user --sftp.supplier.factory.password=pw --sftp.supplier.local-dir=/foo
+```
+//end::ref-doc[]

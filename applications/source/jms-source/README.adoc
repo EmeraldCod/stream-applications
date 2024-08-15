@@ -1,0 +1,18 @@
+//tag::ref-doc[]
+= JMS Source
+
+The JMS source enables receiving messages from JMS.
+
+== Options
+
+The **JMS** $$source$$ has the following options:
+
+//tag::configuration-properties[link-to-catalog=true]
+https://github.com/spring-cloud/spring-functions-catalog/tree/main/supplier/spring-jms-supplier#configuration-options[See Spring Functions Catalog for configuration options].
+//end::configuration-properties[]
+
+//end::ref-doc[]
+
+NOTE: Spring boot broker configuration is used; refer to the
+https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-jms[Spring Boot Documentation] for more information.
+The `spring.jms.*` properties above are also handled by the boot JMS support.

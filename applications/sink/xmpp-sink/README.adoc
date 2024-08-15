@@ -1,0 +1,36 @@
+//tag::ref-doc[]
+= XMPP Sink
+
+The "xmpp" sink enables sending messages to a XMPP server.
+
+== Input
+
+* `byte[]`
+
+== Output
+
+=== Payload
+
+N/A
+
+== Options
+
+The **$$zeromq$$** $$sink$$ has the following options:
+
+//tag::configuration-properties[link-to-catalog=true]
+https://github.com/spring-cloud/spring-functions-catalog/tree/main/consumer/spring-xmpp-consumer#configuration-options[See Spring Functions Catalog for configuration options].
+//end::configuration-properties[]
+
+== Build
+
+```
+$ ./mvnw clean install -PgenerateApps
+$ cd apps
+```
+You can find the corresponding binder based projects here.
+You can then cd into one of the folders and build it:
+```
+$ ./mvnw clean package
+```
+
+//end::ref-doc[]

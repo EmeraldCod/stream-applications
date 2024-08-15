@@ -1,0 +1,16 @@
+//tag::ref-doc[]
+= RabbitMQ Sink
+
+This module sends messages to RabbitMQ.
+
+== Options
+
+The **$$rabbit$$** $$sink$$ has the following options:
+
+(See the Spring Boot documentation for RabbitMQ connection properties)
+
+//tag::configuration-properties[link-to-catalog=true]
+https://github.com/spring-cloud/spring-functions-catalog/tree/main/consumer/spring-rabbit-consumer#configuration-options[See Spring Functions Catalog for configuration options].
+//end::configuration-properties[]
+
+//end::ref-doc[]

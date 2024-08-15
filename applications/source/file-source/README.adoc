@@ -1,0 +1,26 @@
+//tag::ref-doc[]
+= File Source
+
+This application polls a directory and sends new files or their contents to the output channel.
+The file source provides the contents of a File as a byte array by default.
+However, this can be customized using the --file.supplier.mode option:
+
+* ref Provides a java.io.File reference
+
+* lines Will split files line-by-line and emit a new message for each line
+
+* contents The default. Provides the contents of a file as a byte array
+
+When using `--file.supplier.mode=lines`, you can also provide the additional option `--file.supplier.withMarkers=true`.
+If set to true, the underlying FileSplitter will emit additional start-of-file and end-of-file marker messages before and after the actual data.
+The payload of these 2 additional marker messages is of type `FileSplitter.FileMarker`. The option withMarkers defaults to false if not explicitly set.
+
+== Options
+
+The **$$file$$** $$source$$ has the following options:
+
+//tag::configuration-properties[link-to-catalog=true]
+https://github.com/spring-cloud/spring-functions-catalog/tree/main/supplier/spring-file-supplier#configuration-options[See Spring Functions Catalog for configuration options].
+//end::configuration-properties[]
+
+//end::ref-doc[]
